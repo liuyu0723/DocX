@@ -595,7 +595,9 @@ namespace Xceed.Words.NET
         XElement pPr = GetOrCreate_pPr();
         XElement jc = pPr.Element( XName.Get( "jc", DocX.w.NamespaceName ) );
 
-        if( alignment != Xceed.Words.NET.Alignment.left )
+        // ms word table cell set default alignment to justify, not left.
+        //if( alignment != Xceed.Words.NET.Alignment.left )
+        if(System.Enum.IsDefined(typeof(Xceed.Words.NET.Alignment), alignment)
         {
           if( jc == null )
             pPr.Add( new XElement( XName.Get( "jc", DocX.w.NamespaceName ), new XAttribute( XName.Get( "val", DocX.w.NamespaceName ), alignment.ToString() ) ) );
